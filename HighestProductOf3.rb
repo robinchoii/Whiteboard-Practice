@@ -1,4 +1,4 @@
-numbers = [1,5,3,2,6,8,4,7,0,9]
+numbers = [-10,-10,1,3,2]
 # def highest_product(array)
 #   if array.length < 3
 #     raise StandardError, "Give me an array with 3 numbers"
