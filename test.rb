@@ -1,19 +1,38 @@
+# def matchDonuts(donutConstraintPairs, candidateConstraintPairs)
+#     count = 0
+#     match = []
+#     while count < candidateConstraintPairs.length do
+#     candidateConstraintPairs.each do |member|
+#       # p member
+#       donutConstraintPairs.each do |donut|
+#         # p donut
+#         if donut[1] == member[1]
+#           pair = Array.new(2) {|x, y| y = member[0], x = donut[0] }
+#         end
+#       end
+#     end
+#     count += 1
+#   end
+#   # p match.first(2)
+# end
 def matchDonuts(donutConstraintPairs, candidateConstraintPairs)
-    count = 0
-    match = []
-    while count < candidateConstraintPairs.length do
-    candidateConstraintPairs.each do |member|
-      # p member
-      donutConstraintPairs.each do |donut|
-        # p donut
-        if donut[1] == member[1]
-          pair = Array.new(2) {|x, y| y = member[0], x = donut[0] }
+  donuts = Hash[donutConstraintPairs.map {|key, value| [key, value]}]
+  team = Hash[candidateConstraintPairs.map {|key, value| [key, value]}]
+  # p donuts
+  # p team
+  match = []
+  team.each_pair {|member, type1|
+    donuts.each_pair {|donutname, type2|
+      if "#{type2}" == "#{type1}"
+        if match.include?(Array.new(2) {|name, donut| name = member, donut = donutname})
+          next
+        else
+          match << Array.new(2) {|name, donut| name = member, donut = donutname}
         end
       end
-    end
-    count += 1
-  end
-  # p match.first(2)
+    }
+  }
+  p match.sort_by! {|name| name}.flatten
 end
 
 
@@ -23,8 +42,8 @@ donutConstraintPairs = [
   ["eclair", "chocolate"]]
 
 candidateConstraintPairs = [
-  ["john", "chocolate"],
-  ["jose", "vegan"]]
+  ["jose", "vegan"],
+  ["john", "chocolate"]]
 
 
 matchDonuts(donutConstraintPairs, candidateConstraintPairs)
