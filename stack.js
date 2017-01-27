@@ -23,3 +23,11 @@ Stack.prototype.pop = function(data) {
   this.size -= 1;
   return temp
 }
+
+Stack.prototype.isEmpty = function() {
+  return this.top == null;
+}
+
+Stack.prototype.min = function() {
+
+}
